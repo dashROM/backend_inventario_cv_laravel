@@ -1,34 +1,47 @@
-GET http://127.0.0.1:8000/api/usuario
-Authorization: Bearer 7|iqIVoLv10mhT1sbIWxpIDzGcE2yiNSEorBoqHG7fe862f5e6
+GET http://127.0.0.1:8000/api/usuario 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
 Accept: application/json
 
-### Guardar
-POST http://127.0.0.1:8000/api/usuario
-Authorization: Bearer 7|iqIVoLv10mhT1sbIWxpIDzGcE2yiNSEorBoqHG7fe862f5e6
+### Guardar 
+POST http://127.0.0.1:8000/api/usuario 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
 Content-Type: application/json
 
 {
-    "name": "david",
-    "email": "david@mail.com",
-    "password": "david54321"
+"name": "david", "email": "david@mail.com", "password": "david54321"
 }
 
-### Mostrar
-GET http://127.0.0.1:8000/api/usuario/2
-Authorization: Bearer 7|iqIVoLv10mhT1sbIWxpIDzGcE2yiNSEorBoqHG7fe862f5e6
+### mostrar 
+GET http://127.0.0.1:8000/api/usuario/2 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
 
-### Modificar
-PUT http://127.0.0.1:8000/api/usuario/2
-Authorization: Bearer 7|iqIVoLv10mhT1sbIWxpIDzGcE2yiNSEorBoqHG7fe862f5e6
+### modificar 
+PUT http://127.0.0.1:8000/api/usuario/2 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
 Content-Type: application/json
 
 {
-    "name": "juan",
-    "email": "juancito@mail.com",
-    "password": "juan54321"
+"name": "david", "email": "david@mail.com"
 }
 
+### eliminar 
+DELETE http://127.0.0.1:8000/api/usuario/3 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
 
-### Eliminar
-DELETE http://127.0.0.1:8000/api/usuario/3
-Authorization: Bearer 7|iqIVoLv10mhT1sbIWxpIDzGcE2yiNSEorBoqHG7fe862f5e6
+### Asignar role 
+POST http://127.0.0.1:8000/api/usuario/1/asignar_role 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
+Content-Type: application/json
+
+{
+"role": "ADMIN"
+}
+
+### quitar Role 
+POST http://127.0.0.1:8000/api/usuario/1/quitar_role 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
+Content-Type: application/json
+
+{
+"role": "ADMIN"
+}

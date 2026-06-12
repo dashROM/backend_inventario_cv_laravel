@@ -1,28 +1,24 @@
-POST http://localhost:8000/api/v1/auth/register
+POST http://localhost:8000/api/v1/auth/register 
 Content-Type: application/json
 
 {
-    "name": "admin",
-    "email": "admin@mail.com",
-    "password": "admin54321"
+"name": "admin", "email": "admin@mail.com", "password": "admin54321"
 }
 
-### login
-
-POST http://localhost:8000/api/v1/auth/login
+### login 
+POST http://localhost:8000/api/v1/auth/login 
 Content-Type: application/json
 
 {
-    "email": "admin@mail.com",
-    "password": "admin54321"
+"email": "admin@mail.com", "password": "admin54321"
 }
 
-### Profile
-GET http://localhost:8000/api/v1/auth/profile
-Accept: application/json
-Authorization: Bearer 3|qqEQWT3cTG2aV1kwJIJtN7TqkFTNTZFO7zs6Q4xg05db5dbb
+### Profile 
+GET http://localhost:8000/api/v1/auth/profile 
+Accept: application/json 
+Authorization: Bearer 8|DFLvBooExIIHVmUnNNX5YZXASu8vF2wPjy0ZLIjN244777a1
 
-### Logout
-POST http://localhost:8000/api/v1/auth/logout
-Accept: application/json
-Authorization: Bearer 3|qqEQWT3cTG2aV1kwJIJtN7TqkFTNTZFO7zs6Q4xg05db5dbb
+### Logout 
+POST http://localhost:8000/api/v1/auth/logout 
+Accept: application/json 
+Authorization: Bearer 8|DFLvBooExIIHVmUnNNX5YZXASu8vF2wPjy0ZLIjN244777a1

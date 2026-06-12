@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/api/role 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
+
+### Guardar rol 
+POST http://127.0.0.1:8000/api/role 
+Content-Type: application/json 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
+
+{
+"nombre": "DIRECTOR"
+}
+
+### Modificar 
+PUT http://127.0.0.1:8000/api/role/2 
+Content-Type: application/json 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
+
+{
+"nombre": "GERENTE", "detalle": "Gerente de la empresa"
+}
+
+### Asignar permiso 
+POST http://127.0.0.1:8000/api/role/1/asignar_permiso 
+Content-Type: application/json 
+Authorization: Bearer 9|SzVRNXGpqRNQw8g2J0nXTfdT4Cjbd6LPmYfFSsy9b686637c
+
+{
+"permisos": [1,2]
+}

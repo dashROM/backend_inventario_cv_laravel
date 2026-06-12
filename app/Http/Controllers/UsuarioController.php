@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -13,8 +14,11 @@ class UsuarioController extends Controller
     public function index()
     {
         // listar
-        $usuarios = User::get(); // select * from users
+        // $usuarios = DB::select("SELECT * from users");
+        $usuarios = User::with(['roles'])->paginate(10); // select * from users
+        
         return response()->json($usuarios);
+
     }
 
     /**
@@ -24,11 +28,10 @@ class UsuarioController extends Controller
     {
         // validar
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6'
+            "name" => "required|string",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|string|min:6"
         ]);
-
         // guardar
         $usuario = new User();
         $usuario->name = $request->name;
@@ -37,6 +40,7 @@ class UsuarioController extends Controller
         $usuario->save();
 
         return response()->json($usuario, 201);
+
     }
 
     /**
@@ -45,8 +49,8 @@ class UsuarioController extends Controller
     public function show(string $id)
     {
         // mostrar
-        $usuario = User::findOrFail($id); // select * from users where id = $id
-        
+       $usuario = User::findOrFail($id); // select * from users where id = $id
+
         return response()->json($usuario);
     }
 
@@ -57,12 +61,13 @@ class UsuarioController extends Controller
     {
         // validar
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6'
+            "name" => "string",
+            "email" => "email|unique:users,email,".$id,
+            "password" => "string|min:6"
         ]);
-        // modificar
-        $usuario = User::findOrFail($id);
+            
+            // modificar
+        $usuario = User::find($id);
         $usuario->name = $request->name;
         $usuario->email = $request->email;
         if($request->password){
@@ -70,7 +75,7 @@ class UsuarioController extends Controller
         }
         $usuario->update();
 
-        return response()->json($usuario, 201);
+        return response()->json(["mensaje" => "Usuario Actualizado", "usuario" => $usuario], 201);
     }
 
     /**
@@ -79,8 +84,25 @@ class UsuarioController extends Controller
     public function destroy(string $id)
     {
         // eliminar
-        $usuario = User::destroy($id);
-
+        User::destroy($id); // delete from users where id = $id
         return response()->json(null, 204);
     }
+
+    public function asignarRole(string $id, Request $request){
+     
+         $usuario= User::find($id);
+         $usuario->asignarRole($request->role);
+
+         return response()->json(["mensaje" => "roles asignados correctamente"], 201);
+    }
+
+    public function eliminarRole(string $id, Request $request){
+     
+         $usuario= User::find($id);
+         $usuario->quitarRole($request->role);
+
+         return response()->json(["mensaje" => "role quitado"], 200);
+    }
+
+    
 }
